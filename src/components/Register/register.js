@@ -1,8 +1,15 @@
 import React from "react";
 
 import RegisterForm from "./RegisterForm/registerform";
+import { connect } from "react-redux";
 
-const Register = () => {
+import * as selectors from "../../reducers";
+import { Redirect } from "react-router-dom";
+
+const Register = ({ isAuthenticated }) => {
+  if (isAuthenticated) {
+    return <Redirect to="/feed" />;
+  }
   return (
     <div className="main-login-container">
       <div className="login-logo">
@@ -17,4 +24,6 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default connect((state) => ({
+  isAuthenticated: selectors.isAuthenticated(state),
+}))(Register);

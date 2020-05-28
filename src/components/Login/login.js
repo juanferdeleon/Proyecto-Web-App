@@ -1,10 +1,16 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 import LoginForm from "./LoginForm/loginform";
+import * as selectors from "../../reducers";
 
 import "./styles.css";
 
-const Login = () => {
+const Login = ({ isAuthenticated }) => {
+  if (isAuthenticated) {
+    return <Redirect to="/feed" />;
+  }
   return (
     <div className="main-login-container">
       <div className="login-logo">
@@ -19,4 +25,6 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default connect((state) => ({
+  isAuthenticated: selectors.isAuthenticated(state),
+}))(Login);

@@ -4,6 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock, faAt } from "@fortawesome/free-solid-svg-icons";
 import isValidEmail from "sane-email-validation";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
+import * as actions from "../../../actions/createuser";
+import * as selectors from "../../../reducers";
 
 const renderInput = ({ input, meta, label, icon }) => (
   <div
@@ -34,11 +38,11 @@ const renderInput = ({ input, meta, label, icon }) => (
   </div>
 );
 
-const RegisterForm = ({ submitting }) => {
+const RegisterForm = ({ handleSubmit, submitting, onSubmit }) => {
   return (
     <div className="login-form">
       <h2>Bienvenido</h2>
-      <form>
+      <form onSubmit={handleSubmit((values) => onSubmit(values))}>
         <Field
           name="user"
           type="text"
@@ -106,4 +110,17 @@ export default reduxForm({
   form: "RegisterForm",
   destroyOnUnmount: false,
   validate,
-})(RegisterForm);
+})(
+  connect(
+    (state) => ({
+      isLoading: selectors.getIsCreatingUser(state),
+      error: selectors.getCreatingUserErrorMsg(state),
+    }),
+    (dispatch) => ({
+      onSubmit(values) {
+        const { user, email, password, name } = values;
+        dispatch(actions.createUser(user, email, password, name));
+      },
+    })
+  )(RegisterForm)
+);

@@ -1,0 +1,11 @@
+.main-feed-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(21, 32, 43);
+  color: #fff;
+  flex-direction: row;
+  height: 100vh;
+  overflow: auto;
+  width: 100wh;
+}

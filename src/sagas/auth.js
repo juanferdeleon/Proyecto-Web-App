@@ -7,7 +7,7 @@ import * as types from "../types/auth";
 
 function* login(action) {
   try {
-    const response = yield call(fetch, `${API_BASE_URL}/token-auth`, {
+    const response = yield call(fetch, `${API_BASE_URL}/auth-token`, {
       method: "POST",
       body: JSON.stringify(action.payload),
       headers: {
@@ -17,7 +17,6 @@ function* login(action) {
 
     if (response.status === 200) {
       const { token } = yield response.json();
-      console.log("TOKEN", token);
       yield put(actions.completeLogin(token));
     } else {
       const { non_field_errors } = yield response.json();

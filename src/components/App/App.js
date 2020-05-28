@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Login from "../Login/login";
 import Register from "../Register/register";
+import Feed from "../Feed/feed";
 
 const { store, persistor } = configureStore();
 
@@ -17,6 +18,7 @@ const App = () => {
         <Router>
           <Route path="/" exact component={Login} />
           <Route path="/register" exact component={Register} />
+          <Route path="/feed" exact component={Feed} />
         </Router>
       </PersistGate>
     </Provider>
