@@ -77,7 +77,7 @@ const validate = (values) => {
   const errors = {};
 
   if (!values.tweet) {
-    return errors;
+    errors.emptyTweet = "No se pueden hacer Tweets en vacios.";
   } else if (values.tweet.length > 280) {
     errors.tweet = "Ups! Tu tweet debe tener menos de 280 caracteres.";
   }

@@ -9,9 +9,13 @@ import {
 import { connect } from "react-redux";
 import userlogo from "../../img/userlogo.svg";
 
+import * as retweetActions from "../../actions/retweetsomething";
+import * as favActions from "../../actions/favsomething";
+import * as saveActions from "../../actions/savesomething";
+
 import "./styles.css";
 
-const Tweet = ({ tweetInfo }) => {
+const Tweet = ({ tweetInfo, makeComment, makeRetweet, addFav, addSaved }) => {
   return (
     <div className="tweet-main-container">
       <div className="tweet-something-user-logo-container">
@@ -26,22 +30,34 @@ const Tweet = ({ tweetInfo }) => {
           <p>{tweetInfo.tweet}</p>
         </div>
         <div className="tweet-data">
-          <div className="tweet-interaction">
+          <div
+            className="tweet-interaction"
+            onClick={() => makeComment(tweetInfo)}
+          >
             <FontAwesomeIcon icon={faComment} />
           </div>
-          <div className="tweet-interaction tweet-interaction-fav">
+          <div
+            className="tweet-interaction tweet-interaction-fav"
+            onClick={() => addFav(tweetInfo)}
+          >
             <FontAwesomeIcon icon={faHeart} />
           </div>
           <div className="tweet-info-count">
             <p>{tweetInfo.favs}</p>
           </div>
-          <div className="tweet-interaction tweet-interaction-retweet">
+          <div
+            className="tweet-interaction tweet-interaction-retweet"
+            onClick={() => makeRetweet(tweetInfo)}
+          >
             <FontAwesomeIcon icon={faRetweet} />
           </div>
           <div className="tweet-info-count">
             <p>{tweetInfo.retweets}</p>
           </div>
-          <div className="tweet-interaction">
+          <div
+            className="tweet-interaction"
+            onClick={() => addSaved(tweetInfo)}
+          >
             <FontAwesomeIcon icon={faBookmark} />
           </div>
         </div>
@@ -51,5 +67,16 @@ const Tweet = ({ tweetInfo }) => {
 };
 
 export default connect(undefined, (dispatch) => ({
-  //TODO despachar acciones comment, retweet, fav y save
+  makeComment(tweetInfo) {
+    console.log(tweetInfo);
+  },
+  makeRetweet(tweetInfo) {
+    dispatch(retweetActions.startRetweet(tweetInfo));
+  },
+  addFav(tweetInfo) {
+    dispatch(favActions.startFavTweet(tweetInfo));
+  },
+  addSaved(tweetInfo) {
+    dispatch(saveActions.startSaveTweet(tweetInfo));
+  },
 }))(Tweet);

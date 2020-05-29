@@ -4,6 +4,9 @@ import { watchLoginStarted, watchRefreshTokenStarted } from "./auth";
 import { watchCreateUserStarted } from "./createuser";
 import { watchGetFeedTweets } from "./feedtweets";
 import { watchTweetSomething } from "./tweetsomething";
+import { watchRetweetSomething } from "./retweetsomething";
+import { watchFavSomething } from "./favsomething";
+import { watchSaveSomething } from "./savesomething";
 
 function* mainSaga() {
   yield all([
@@ -12,6 +15,9 @@ function* mainSaga() {
     fork(watchCreateUserStarted),
     fork(watchGetFeedTweets),
     fork(watchTweetSomething),
+    fork(watchRetweetSomething),
+    fork(watchFavSomething),
+    fork(watchSaveSomething),
   ]);
 }
 

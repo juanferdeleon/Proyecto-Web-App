@@ -17,10 +17,19 @@ const feedTweets = (state = null, action) => {
       newS[tweet.id] = {
         ...tweet,
       };
-
       return newS;
+    case types.RETWEET_COMPLETED:
+      const prevState = { ...state };
+      prevState[action.payload.tweetInfo.id] = { ...action.payload.tweetInfo };
+      return prevState;
+    case types.FAV_TWEET_COMPLETED:
+      const prevS = { ...state };
+      prevS[action.payload.tweetInfo.id] = { ...action.payload.tweetInfo };
+      return prevS;
     case types.POST_TWEET_FAILED:
       return omit(state, action.payload.id);
+    case types.AUTHENTICATION_IDENTITY_CLEARED:
+      return null;
     default:
       return state;
   }

@@ -4,12 +4,18 @@ import auth, * as authSelectors from "./auth";
 import createUser, * as createUserSelectors from "./createuser";
 import getTweets, * as getTweetsSelectors from "./gettweets";
 import tweetsomething from "./tweetsomething";
+import retweet from "./retweetsomething";
+import favourite from "./favsomething";
+import save from "./savesomething";
 
 const reducer = combineReducers({
   auth,
   createUser,
   getTweets,
   tweetsomething,
+  retweet,
+  favourite,
+  save,
   form: formReducer,
 });
 
