@@ -2,10 +2,14 @@ import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
 import auth, * as authSelectors from "./auth";
 import createUser, * as createUserSelectors from "./createuser";
+import getTweets, * as getTweetsSelectors from "./gettweets";
+import tweetsomething from "./tweetsomething";
 
 const reducer = combineReducers({
   auth,
   createUser,
+  getTweets,
+  tweetsomething,
   form: formReducer,
 });
 
@@ -33,3 +37,13 @@ export const getCreatingUserErrorMsg = (state) =>
   createUserSelectors.getErrorMsg(state.createUser);
 export const getIsCreatingUser = (state) =>
   createUserSelectors.getIsLoading(state.createUser);
+
+// Get Tweets Selectors
+export const getFeedTweet = (state, tweetId) =>
+  getTweetsSelectors.getFeedTweet(state.getTweets, tweetId);
+export const getFeedTweets = (state) =>
+  getTweetsSelectors.getFeedTweets(state.getTweets);
+export const getTweetsError = (state) =>
+  getTweetsSelectors.getTweetsError(state.getTweets);
+export const getIsLoaidingTweets = (state) =>
+  getTweetsSelectors.getIsLoading(state.getTweets);

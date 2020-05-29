@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 
 import SideBar from "../SideBar/sidebar";
+import FeedTweets from "../FeedTweets/feedtweets";
+import Suggestions from "../Suggestions/suggestions";
 import * as selectors from "../../reducers";
 
 import "./styles.css";
@@ -13,9 +15,9 @@ const Feed = ({ isAuthenticated }) => {
   }
   return (
     <div className="main-feed-container">
-      <div>
-        <SideBar />
-      </div>
+      <SideBar />
+      <FeedTweets />
+      <Suggestions />
     </div>
   );
 };

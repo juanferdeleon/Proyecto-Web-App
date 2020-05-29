@@ -9,7 +9,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "dateformat": "^3.0.3",
     "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.15",
+    "normalizr": "^3.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -19,7 +22,8 @@
     "redux-form": "^8.3.5",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.1.3",
-    "sane-email-validation": "^3.0.1"
+    "sane-email-validation": "^3.0.1",
+    "uuid": "^8.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

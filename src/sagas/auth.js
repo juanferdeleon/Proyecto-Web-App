@@ -3,6 +3,7 @@ import { call, takeEvery, put, select } from "redux-saga/effects";
 import { API_BASE_URL } from "../settings";
 import * as selectors from "../reducers";
 import * as actions from "../actions/auth";
+import * as actions2 from "../actions/gettweets";
 import * as types from "../types/auth";
 
 function* login(action) {
@@ -18,6 +19,7 @@ function* login(action) {
     if (response.status === 200) {
       const { token } = yield response.json();
       yield put(actions.completeLogin(token));
+      yield put(actions2.getFeedTweets());
     } else {
       const { non_field_errors } = yield response.json();
       yield put(actions.failLogin(non_field_errors[0]));
