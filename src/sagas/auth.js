@@ -2,8 +2,8 @@ import { call, takeEvery, put, select } from "redux-saga/effects";
 
 import { API_BASE_URL } from "../settings";
 import * as selectors from "../reducers";
-import * as actions from "../actions/auth";
-import * as actions2 from "../actions/gettweets";
+import * as authActions from "../actions/auth";
+import * as getTweetsActions from "../actions/gettweets";
 import * as types from "../types/auth";
 
 function* login(action) {
@@ -18,14 +18,14 @@ function* login(action) {
 
     if (response.status === 200) {
       const { token } = yield response.json();
-      yield put(actions.completeLogin(token));
-      yield put(actions2.getFeedTweets());
+      yield put(authActions.completeLogin(token));
+      yield put(getTweetsActions.getFeedTweets());
     } else {
       const { non_field_errors } = yield response.json();
-      yield put(actions.failLogin(non_field_errors[0]));
+      yield put(authActions.failLogin(non_field_errors[0]));
     }
   } catch (error) {
-    yield put(actions.failLogin("Falló horrible la conexión mano"));
+    yield put(authActions.failLogin("Falló horrible la conexión mano"));
   }
 }
 
@@ -50,15 +50,17 @@ function* refreshToken(action) {
 
       if (response.status === 200) {
         const jResponse = yield response.json();
-        yield put(actions.completeTokenRefresh(jResponse.token));
+        yield put(authActions.completeTokenRefresh(jResponse.token));
       } else {
         // TODO: poner un redirect al home (login)
         const { non_field_errors } = yield response.json();
-        yield put(actions.failTokenRefresh(non_field_errors[0]));
+        yield put(authActions.failTokenRefresh(non_field_errors[0]));
       }
     } catch (error) {
       // TODO: poner un redirect al home (login)
-      yield put(actions.failTokenRefresh("Falló horrible la conexión mano"));
+      yield put(
+        authActions.failTokenRefresh("Falló horrible la conexión mano")
+      );
     }
   }
 }

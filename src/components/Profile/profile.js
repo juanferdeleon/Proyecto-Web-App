@@ -3,20 +3,20 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import SideBar from "../SideBar/sidebar";
-import FeedTweets from "../FeedTweets/feedtweets";
+import ProfileContainer from "./ProfileContainer/profilecontainer";
 import Suggestions from "../Suggestions/suggestions";
 import * as selectors from "../../reducers";
 
 import "./styles.css";
 
-const Feed = ({ isAuthenticated }) => {
+const Profile = ({ isAuthenticated }) => {
   if (!isAuthenticated) {
     return <Redirect to="/" />;
   }
   return (
-    <div className="main-feed-container">
+    <div className="main-profile-container">
       <SideBar />
-      <FeedTweets />
+      <ProfileContainer />
       <Suggestions />
     </div>
   );
@@ -24,4 +24,4 @@ const Feed = ({ isAuthenticated }) => {
 
 export default connect((state) => ({
   isAuthenticated: selectors.isAuthenticated(state),
-}))(Feed);
+}))(Profile);

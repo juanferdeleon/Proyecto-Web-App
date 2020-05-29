@@ -7,6 +7,8 @@ import tweetsomething from "./tweetsomething";
 import retweet from "./retweetsomething";
 import favourite from "./favsomething";
 import save from "./savesomething";
+import navigation, * as navigationSelectors from "./navigation";
+import myTweets, * as myTweetsSelectors from "./mytweets";
 
 const reducer = combineReducers({
   auth,
@@ -16,6 +18,8 @@ const reducer = combineReducers({
   retweet,
   favourite,
   save,
+  navigation,
+  myTweets,
   form: formReducer,
 });
 
@@ -53,3 +57,17 @@ export const getTweetsError = (state) =>
   getTweetsSelectors.getTweetsError(state.getTweets);
 export const getIsLoaidingTweets = (state) =>
   getTweetsSelectors.getIsLoading(state.getTweets);
+
+// Navigation Selectors
+export const getNavigationWindow = (state) =>
+  navigationSelectors.getNavigationWindow(state.navigation);
+
+// My Tweets Selectors
+export const getMyTweets = (state) =>
+  myTweetsSelectors.getMyTweets(state.myTweets);
+export const getMyFavTweets = (state) =>
+  myTweetsSelectors.getMyFavTweets(state.myTweets);
+export const getMySavedTweets = (state) =>
+  myTweetsSelectors.getMySavedTweets(state.myTweets);
+export const getMyRetweetedTweets = (state) =>
+  myTweetsSelectors.getMyRetweetedTweets(state.myTweets);

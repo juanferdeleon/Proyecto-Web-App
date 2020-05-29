@@ -2,15 +2,15 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
-  faBookmark,
   faUser,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 
 import "./styles.css";
-import * as actions from "../../actions/auth";
-import { Redirect, Link } from "react-router-dom";
+import * as authActions from "../../actions/auth";
+import * as getTweetsActions from "../../actions/gettweets";
+import { Link } from "react-router-dom";
 
 const SideBar = ({ onClick }) => {
   return (
@@ -32,18 +32,6 @@ const SideBar = ({ onClick }) => {
             >
               <FontAwesomeIcon icon={faHome} />
               <li>Inicio</li>
-            </div>
-          </Link>
-          <Link to="saved">
-            <div
-              className="sidebar-option"
-              onClick={() => {
-                onClick("saved");
-                return <Redirect to="/saved" />;
-              }}
-            >
-              <FontAwesomeIcon icon={faBookmark} />
-              <li>Guardados</li>
             </div>
           </Link>
           <Link to="profile">
@@ -76,12 +64,7 @@ export default connect(undefined, (dispatch) => ({
   onClick(path) {
     switch (path) {
       case "feed":
-        //TODO CARGAR TWEETS
-        console.log(path);
-        break;
-      case "saved":
-        //TODO CARGAR SAVED
-        console.log(path);
+        dispatch(getTweetsActions.getFeedTweets());
         break;
       case "profile":
         //TODO CARGAR PROFILE
@@ -89,7 +72,7 @@ export default connect(undefined, (dispatch) => ({
         break;
       case "logout":
         //TODO DISPATCH LOGOUT
-        dispatch(actions.logout());
+        dispatch(authActions.logout());
         break;
       default:
         return null;
