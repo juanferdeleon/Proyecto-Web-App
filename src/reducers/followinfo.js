@@ -10,6 +10,12 @@ const followingList = (state = null, action) => {
       return { ...action.payload.followList };
     case types.FETCHING_FOLLOWING_USERS_FAILED:
       return null;
+    case types.FOLLOW_USER_COMPLETED:
+      let newState = { ...state };
+      newState[action.payload.userName] = {
+        user_name: action.payload.userName,
+      };
+      return newState;
     case types.AUTHENTICATION_IDENTITY_CLEARED:
       return null;
     case types.UNFOLLOW_USER_COMPLETED:

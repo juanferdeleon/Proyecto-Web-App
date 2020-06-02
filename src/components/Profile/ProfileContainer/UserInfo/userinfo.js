@@ -20,6 +20,7 @@ const UserInfo = ({
   followers,
   navigationStatus,
   onClick,
+  onList,
 }) => {
   return (
     <div className="user-info-container">
@@ -29,11 +30,11 @@ const UserInfo = ({
           <h3>{"@" + userName}</h3>
           <div className="follows">
             <p>{following}</p>
-            <Link to="/following">
+            <Link to="/follow-info" onClick={() => onList("Siguiendo")}>
               <p>Siguiendo</p>
             </Link>
             <p>{followers}</p>
-            <Link to="/followers">
+            <Link to="/follow-info" onClick={() => onList("Seguidores")}>
               <p>Seguidores</p>
             </Link>
           </div>
@@ -98,11 +99,16 @@ export default connect(
     following: selectors.getFollowingList(state)
       ? Object.keys(selectors.getFollowingList(state)).length
       : 0,
-    followers: 2,
+    followers: selectors.getFollowersList(state)
+      ? Object.keys(selectors.getFollowersList(state)).length
+      : 0,
   }),
   (dispatch) => ({
     onClick(window) {
       dispatch(actions.changeNavigationWindow(window));
+    },
+    onList(window) {
+      dispatch(actions.changeFollowNavigation(window));
     },
   })
 )(UserInfo);

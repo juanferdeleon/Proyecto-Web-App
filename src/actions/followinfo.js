@@ -15,16 +15,16 @@ export const failFetchingFollowingUsers = (error) => ({
 });
 
 export const fetchingFollowerUsers = () => ({
-  type: types.FETCHING_FOLLOWING_USERS_STARTED,
+  type: types.FETCHING_FOLLOWER_USERS_STARTED,
 });
 
 export const completeFetchingFollowerUsers = (followList) => ({
-  type: types.FETCHING_FOLLOWING_USERS_COMPLETED,
+  type: types.FETCHING_FOLLOWER_USERS_COMPLETED,
   payload: { followList },
 });
 
 export const failFetchingFollowerUsers = (error) => ({
-  type: types.FETCHING_FOLLOWING_USERS_FAILED,
+  type: types.FETCHING_FOLLOWER_USERS_FAILED,
   payload: { error },
 });
 

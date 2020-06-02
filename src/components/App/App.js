@@ -22,7 +22,7 @@ const App = () => {
           <Route path="/register" exact component={Register} />
           <Route path="/feed" exact component={Feed} />
           <Route path="/profile" exact component={Profile} />
-          <Route path="/following" component={Following} />
+          <Route path="/follow-info" component={Following} />
         </Router>
       </PersistGate>
     </Provider>

@@ -6,20 +6,38 @@ import User from "./User/user";
 
 import "./styles.css";
 
-const Users = ({ followingList }) => {
-  return (
-    <div className="users-container">
-      {followingList ? (
-        Object.values(followingList).map((user) => (
-          <User key={user.user_name} userInfo={user} />
-        ))
-      ) : (
-        <h3>Aun no sigues a alguien.</h3>
-      )}
-    </div>
-  );
+const Users = ({ followingList, followersList, navigationStatus }) => {
+  if (navigationStatus === "Siguiendo") {
+    return (
+      <div className="users-container">
+        {followingList ? (
+          Object.values(followingList).map((user) => (
+            <User key={user.user_name} userInfo={user} />
+          ))
+        ) : (
+          <h3>Aun no sigues a alguien.</h3>
+        )}
+      </div>
+    );
+  }
+
+  if (navigationStatus === "Seguidores") {
+    return (
+      <div className="users-container">
+        {followersList ? (
+          Object.values(followersList).map((user) => (
+            <User key={user.user_name} userInfo={user} />
+          ))
+        ) : (
+          <h3>Aun no sigues a alguien.</h3>
+        )}
+      </div>
+    );
+  }
 };
 
 export default connect((state) => ({
   followingList: selectors.getFollowingList(state),
+  followersList: selectors.getFollowersList(state),
+  navigationStatus: selectors.getFollowNavigationWindow(state),
 }))(Users);

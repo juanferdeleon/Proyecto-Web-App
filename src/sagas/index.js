@@ -8,7 +8,12 @@ import { watchRetweetSomething } from "./retweetsomething";
 import { watchFavSomething } from "./favsomething";
 import { watchSaveSomething } from "./savesomething";
 import { watchGetMyTweets } from "./mytweets";
-import { watchGetFollowingUsers, watchUnfollowUser } from "./followinfo";
+import {
+  watchGetFollowingUsers,
+  watchUnfollowUser,
+  watchGetFollwerUsers,
+  watchFollowUser,
+} from "./followinfo";
 
 function* mainSaga() {
   yield all([
@@ -23,6 +28,8 @@ function* mainSaga() {
     fork(watchGetMyTweets),
     fork(watchGetFollowingUsers),
     fork(watchUnfollowUser),
+    fork(watchGetFollwerUsers),
+    fork(watchFollowUser),
   ]);
 }
 
