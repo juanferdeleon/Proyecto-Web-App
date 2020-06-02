@@ -9,6 +9,7 @@ import favourite from "./favsomething";
 import save from "./savesomething";
 import navigation, * as navigationSelectors from "./navigation";
 import myTweets, * as myTweetsSelectors from "./mytweets";
+import followInfo, * as followInfoSelectors from "./followinfo";
 
 const reducer = combineReducers({
   auth,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   save,
   navigation,
   myTweets,
+  followInfo,
   form: formReducer,
 });
 
@@ -71,3 +73,8 @@ export const getMySavedTweets = (state) =>
   myTweetsSelectors.getMySavedTweets(state.myTweets);
 export const getMyRetweetedTweets = (state) =>
   myTweetsSelectors.getMyRetweetedTweets(state.myTweets);
+
+export const getFollowingList = (state) =>
+  followInfoSelectors.getFollowingList(state.followInfo);
+export const getFollowersList = (state) =>
+  followInfoSelectors.getFollowersList(state.followInfo);

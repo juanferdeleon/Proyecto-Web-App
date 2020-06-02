@@ -73,8 +73,8 @@ const Tweets = ({
 
 export default connect((state) => ({
   navigationStatus: selectors.getNavigationWindow(state),
-  myTweets: selectors.getFeedTweets(state),
-  myFavTweets: selectors.getFeedTweets(state),
-  myRetweetedTweets: selectors.getFeedTweets(state),
-  mySavedTweets: selectors.getFeedTweets(state),
+  myTweets: selectors.getMyTweets(state),
+  myFavTweets: selectors.getMyFavTweets(state),
+  myRetweetedTweets: selectors.getMyRetweetedTweets(state),
+  mySavedTweets: selectors.getMySavedTweets(state),
 }))(Tweets);

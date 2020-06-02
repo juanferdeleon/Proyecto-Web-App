@@ -12,6 +12,7 @@ import * as selectors from "../../../../reducers";
 import * as actions from "../../../../actions/navigation";
 
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 const UserInfo = ({
   userName,
@@ -28,9 +29,13 @@ const UserInfo = ({
           <h3>{"@" + userName}</h3>
           <div className="follows">
             <p>{following}</p>
-            <p>Siguiendo</p>
+            <Link to="/profile/following">
+              <p>Siguiendo</p>
+            </Link>
             <p>{followers}</p>
-            <p>Seguidores</p>
+            <Link to="/profile/followers">
+              <p>Seguidores</p>
+            </Link>
           </div>
         </div>
         <div className="edit-profile">
@@ -53,8 +58,8 @@ const UserInfo = ({
         <div
           className={
             navigationStatus === "Favourites"
-              ? "navigation active"
-              : "navigation"
+              ? "navigation fvactive"
+              : "navigation fvnavigation"
           }
           onClick={() => onClick("Favourites")}
         >
@@ -63,7 +68,9 @@ const UserInfo = ({
         </div>
         <div
           className={
-            navigationStatus === "Retweets" ? "navigation active" : "navigation"
+            navigationStatus === "Retweets"
+              ? "navigation rtwactive"
+              : "navigation rtwnavigation"
           }
           onClick={() => onClick("Retweets")}
         >
@@ -88,7 +95,9 @@ export default connect(
   (state) => ({
     userName: selectors.getAuthUsername(state),
     navigationStatus: selectors.getNavigationWindow(state),
-    following: 1,
+    following: selectors.getFollowingList(state)
+      ? Object.keys(selectors.getFollowingList(state)).length
+      : 0,
     followers: 2,
   }),
   (dispatch) => ({

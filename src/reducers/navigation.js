@@ -6,6 +6,10 @@ const navigationWindow = (state = "Tweets", action) => {
   switch (action.type) {
     case types.CHANGE_PROFILE_NAVIGATION:
       return action.payload.window;
+    case types.AUTHENTICATION_IDENTITY_CLEARED:
+      return "Tweets";
+    case types.FETCHING_FEED_TWEETS_STARTED:
+      return "Tweets";
     default:
       return state;
   }

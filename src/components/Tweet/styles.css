@@ -85,3 +85,8 @@
 .tweet-info-count p {
   margin: 0;
 }
+
+.interaction-holder {
+  display: flex;
+  flex-direction: row;
+}

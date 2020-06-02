@@ -91,9 +91,39 @@
   cursor: pointer;
 }
 
+.fvnavigation:hover {
+  color: rgb(224, 36, 9);
+  background-color: rgba(189, 36, 36, 0.301);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.rtwnavigation:hover {
+  color: rgb(23, 191, 99);
+  background-color: rgba(36, 189, 61, 0.301);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
 .navigation.active {
   color: rgb(27, 149, 224);
   transition: 0.1s;
   cursor: pointer;
   border-bottom: 0.15rem solid rgb(27, 149, 224);
+}
+
+.navigation.fvactive {
+  color: rgb(224, 36, 9);
+  cursor: pointer;
+  border-bottom: 0.15rem solid rgb(224, 36, 9);
+}
+
+.navigation.rtwactive {
+  color: rgb(23, 191, 99);
+  cursor: pointer;
+  border-bottom: 0.15rem solid rgb(23, 191, 99);
+}
+
+.follows a {
+  color: #ffffff;
 }

@@ -4,14 +4,14 @@ export const fetchingMyTweets = () => ({
   type: types.FETCHING_MY_TWEETS_STARTED,
 });
 
-export const completeFetchingMyTweets = ({
+export const completedFetchingMyTweets = ({
   myTweets,
-  myRetweets,
-  myFavouriteTweets,
+  myRtwTweets,
+  myFavTweets,
   mySavedTweets,
 }) => ({
   type: types.FETCHING_MY_TWEETS_COMPLETED,
-  payload: { myTweets, myRetweets, myFavouriteTweets, mySavedTweets },
+  payload: { myTweets, myFavTweets, myRtwTweets, mySavedTweets },
 });
 
 export const failFetchingMyTweets = (error) => ({

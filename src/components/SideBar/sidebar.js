@@ -10,6 +10,8 @@ import { connect } from "react-redux";
 import "./styles.css";
 import * as authActions from "../../actions/auth";
 import * as getTweetsActions from "../../actions/gettweets";
+import * as getMyTweetsActions from "../../actions/mytweets";
+import * as followInfoActions from "../../actions/followinfo";
 import { Link } from "react-router-dom";
 
 const SideBar = ({ onClick }) => {
@@ -68,7 +70,9 @@ export default connect(undefined, (dispatch) => ({
         break;
       case "profile":
         //TODO CARGAR PROFILE
-        console.log(path);
+        dispatch(getMyTweetsActions.fetchingMyTweets());
+        dispatch(followInfoActions.fetchingFollowingUsers());
+        dispatch(followInfoActions.fetchingFollowerUsers());
         break;
       case "logout":
         //TODO DISPATCH LOGOUT

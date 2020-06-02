@@ -6,6 +6,8 @@ const tweets = (state = null, action) => {
   switch (action.type) {
     case types.FETCHING_MY_TWEETS_COMPLETED:
       return { ...action.payload };
+    case types.AUTHENTICATION_IDENTITY_CLEARED:
+      return null;
     default:
       return state;
   }
@@ -45,9 +47,13 @@ const myTweets = combineReducers({
 
 export default myTweets;
 
-export const getMyTweets = (state) => state.tweets.myTweets;
-export const getMyFavTweets = (state) => state.tweets.myFavTweets;
-export const getMyRetweetedTweets = (state) => state.tweets.myRetweetedTweets;
-export const getMySavedTweets = (state) => state.tweets.mySavedTweets;
+export const getMyTweets = (state) =>
+  state.tweets ? state.tweets.myTweets : null;
+export const getMyFavTweets = (state) =>
+  state.tweets ? state.tweets.myFavTweets : null;
+export const getMyRetweetedTweets = (state) =>
+  state.tweets ? state.tweets.myRtwTweets : null;
+export const getMySavedTweets = (state) =>
+  state.tweets ? state.tweets.mySavedTweets : null;
 export const getMyTweetsError = (state) => state.error;
 export const getIsLoading = (state) => state.isLoading;
