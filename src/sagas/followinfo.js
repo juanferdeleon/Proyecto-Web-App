@@ -39,3 +39,36 @@ function* getFollowingUsers(action) {
 export function* watchGetFollowingUsers() {
   yield takeEvery(types.FETCHING_FOLLOWING_USERS_STARTED, getFollowingUsers);
 }
+
+function* unfollowUser(action) {
+  try {
+    const isAuth = yield select(selectors.isAuthenticated);
+
+    if (isAuth) {
+      const token = yield select(selectors.getAuthToken);
+      const { userName } = action.payload;
+      const response = yield call(
+        fetch,
+        `${API_BASE_URL}/follower/${userName}/unfollow/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `JWT ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        yield put(actions.unfollowUserCompleted(userName));
+      } else {
+      }
+    }
+  } catch (error) {
+    yield put(actions.failFetchingFollowingUsers(error));
+  }
+}
+
+export function* watchUnfollowUser() {
+  yield takeEvery(types.UNFOLLOW_USER_STARTED, unfollowUser);
+}

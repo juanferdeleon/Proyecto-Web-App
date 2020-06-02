@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import omit from "lodash/omit";
 import * as types from "../types/followinfo";
 
 const followingList = (state = null, action) => {
@@ -11,6 +12,8 @@ const followingList = (state = null, action) => {
       return null;
     case types.AUTHENTICATION_IDENTITY_CLEARED:
       return null;
+    case types.UNFOLLOW_USER_COMPLETED:
+      return omit(state, action.payload.userName);
     default:
       return state;
   }

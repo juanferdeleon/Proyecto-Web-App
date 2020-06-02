@@ -27,3 +27,33 @@ export const failFetchingFollowerUsers = (error) => ({
   type: types.FETCHING_FOLLOWING_USERS_FAILED,
   payload: { error },
 });
+
+export const unfollowUserStarted = (userName) => ({
+  type: types.UNFOLLOW_USER_STARTED,
+  payload: { userName },
+});
+
+export const unfollowUserCompleted = (userName) => ({
+  type: types.UNFOLLOW_USER_COMPLETED,
+  payload: { userName },
+});
+
+export const unfollowUserFailed = (error) => ({
+  type: types.UNFOLLOW_USER_FAILED,
+  payload: { error },
+});
+
+export const followUserStarted = (userName) => ({
+  type: types.FOLLOW_USER_STARTED,
+  payload: { userName },
+});
+
+export const followUserCompleted = (userName) => ({
+  type: types.FOLLOW_USER_COMPLETED,
+  payload: { userName },
+});
+
+export const followUserFailed = (error) => ({
+  type: types.FOLLOW_USER_FAILED,
+  payload: { error },
+});

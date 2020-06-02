@@ -64,6 +64,9 @@ export const getIsLoaidingTweets = (state) =>
 export const getNavigationWindow = (state) =>
   navigationSelectors.getNavigationWindow(state.navigation);
 
+export const getFollowNavigationWindow = (state) =>
+  navigationSelectors.followNavigationWindow(state.navigation);
+
 // My Tweets Selectors
 export const getMyTweets = (state) =>
   myTweetsSelectors.getMyTweets(state.myTweets);
@@ -74,6 +77,7 @@ export const getMySavedTweets = (state) =>
 export const getMyRetweetedTweets = (state) =>
   myTweetsSelectors.getMyRetweetedTweets(state.myTweets);
 
+//Followers and Following Selectors
 export const getFollowingList = (state) =>
   followInfoSelectors.getFollowingList(state.followInfo);
 export const getFollowersList = (state) =>

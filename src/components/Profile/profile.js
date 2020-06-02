@@ -1,18 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 
 import SideBar from "../SideBar/sidebar";
 import ProfileContainer from "./ProfileContainer/profilecontainer";
 import Suggestions from "../Suggestions/suggestions";
-import * as selectors from "../../reducers";
 
 import "./styles.css";
 
-const Profile = ({ isAuthenticated }) => {
-  if (!isAuthenticated) {
-    return <Redirect to="/" />;
-  }
+const Profile = () => {
   return (
     <div className="main-profile-container">
       <SideBar />
@@ -22,6 +17,4 @@ const Profile = ({ isAuthenticated }) => {
   );
 };
 
-export default connect((state) => ({
-  isAuthenticated: selectors.isAuthenticated(state),
-}))(Profile);
+export default connect()(Profile);

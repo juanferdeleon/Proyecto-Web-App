@@ -29,11 +29,11 @@ const UserInfo = ({
           <h3>{"@" + userName}</h3>
           <div className="follows">
             <p>{following}</p>
-            <Link to="/profile/following">
+            <Link to="/following">
               <p>Siguiendo</p>
             </Link>
             <p>{followers}</p>
-            <Link to="/profile/followers">
+            <Link to="/followers">
               <p>Seguidores</p>
             </Link>
           </div>
@@ -102,18 +102,7 @@ export default connect(
   }),
   (dispatch) => ({
     onClick(window) {
-      if (window === "Tweets") {
-        dispatch(actions.changeNavigationWindow(window));
-      }
-      if (window === "Favourites") {
-        dispatch(actions.changeNavigationWindow(window));
-      }
-      if (window === "Retweets") {
-        dispatch(actions.changeNavigationWindow(window));
-      }
-      if (window === "Saved") {
-        dispatch(actions.changeNavigationWindow(window));
-      }
+      dispatch(actions.changeNavigationWindow(window));
     },
   })
 )(UserInfo);
