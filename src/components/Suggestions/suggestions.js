@@ -2,28 +2,47 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Suggestion from "./Suggestion/suggestion";
+import * as selectors from "../../reducers";
+import * as actions from "../../actions/recommendations";
 
 import "./styles.css";
+import { Link } from "react-router-dom";
 
-const Suggestions = ({ suggestionList }) => {
+const Suggestions = ({ suggestionList, onClick }) => {
+  let sidebarSuggestions = undefined;
+  if (suggestionList) {
+    sidebarSuggestions = Object.values(suggestionList).slice(0, 2);
+  }
   return (
     <div className="suggestions-container">
       <div className="suggestions">
         <div className="suggestions-title">
           <h4>A quién seguir</h4>
         </div>
-        {Object.keys(suggestionList).map((username) => {
-          const user = suggestionList[username];
-          return <Suggestion key={user} user={user} />;
-        })}
+        {sidebarSuggestions
+          ? sidebarSuggestions.map((userInfo) => {
+              return (
+                <Suggestion key={userInfo.user_name} userInfo={userInfo} />
+              );
+            })
+          : null}
         <div>
-          <h5>Mostrar mas</h5>
+          <Link to="/suggestions" onClick={onClick}>
+            <h5>Mostrar mas</h5>
+          </Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default connect((state) => ({
-  suggestionList: { user: "prueba1", user2: "prueba2" },
-}))(Suggestions);
+export default connect(
+  (state) => ({
+    suggestionList: selectors.getFollowRecommendations(state),
+  }),
+  (dispatch) => ({
+    onClick() {
+      dispatch(actions.fetchFollowRecommendations());
+    },
+  })
+)(Suggestions);

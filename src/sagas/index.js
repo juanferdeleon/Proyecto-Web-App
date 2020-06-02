@@ -14,6 +14,7 @@ import {
   watchGetFollwerUsers,
   watchFollowUser,
 } from "./followinfo";
+import { watchGetRecommendations } from "./recommendations";
 
 function* mainSaga() {
   yield all([
@@ -30,6 +31,7 @@ function* mainSaga() {
     fork(watchUnfollowUser),
     fork(watchGetFollwerUsers),
     fork(watchFollowUser),
+    fork(watchGetRecommendations),
   ]);
 }
 

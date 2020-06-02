@@ -10,6 +10,7 @@ import save from "./savesomething";
 import navigation, * as navigationSelectors from "./navigation";
 import myTweets, * as myTweetsSelectors from "./mytweets";
 import followInfo, * as followInfoSelectors from "./followinfo";
+import followRecommendations, * as recommendationsSelectors from "./recommendations";
 
 const reducer = combineReducers({
   auth,
@@ -22,6 +23,7 @@ const reducer = combineReducers({
   navigation,
   myTweets,
   followInfo,
+  followRecommendations,
   form: formReducer,
 });
 
@@ -82,3 +84,6 @@ export const getFollowingList = (state) =>
   followInfoSelectors.getFollowingList(state.followInfo);
 export const getFollowersList = (state) =>
   followInfoSelectors.getFollowersList(state.followInfo);
+
+export const getFollowRecommendations = (state) =>
+  recommendationsSelectors.getRecommendations(state.followRecommendations);

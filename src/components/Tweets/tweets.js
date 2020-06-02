@@ -16,7 +16,7 @@ const Tweets = ({
   if (navigationStatus === "Tweets") {
     return (
       <div className="tweets-container">
-        {myTweets ? (
+        {myTweets && Object.keys(myTweets).length !== 0 ? (
           Object.keys(myTweets).map((tweetId) => {
             const tweet = myTweets[tweetId];
             return <Tweet key={tweetId} tweetInfo={tweet} />;
@@ -30,13 +30,13 @@ const Tweets = ({
   if (navigationStatus === "Favourites") {
     return (
       <div className="tweets-container">
-        {myFavTweets ? (
+        {myFavTweets && Object.keys(myFavTweets).length !== 0 ? (
           Object.keys(myFavTweets).map((tweetId) => {
             const tweet = myFavTweets[tweetId];
             return <Tweet key={tweetId} tweetInfo={tweet} />;
           })
         ) : (
-          <div>Aun no tienes tweets por ver. Comparte lo que piensas!</div>
+          <div>Aun no tienes tweets agregados a favoritos.</div>
         )}
       </div>
     );
@@ -44,13 +44,13 @@ const Tweets = ({
   if (navigationStatus === "Retweets") {
     return (
       <div className="tweets-container">
-        {myRetweetedTweets ? (
+        {myRetweetedTweets && Object.keys(myRetweetedTweets).length !== 0 ? (
           Object.keys(myRetweetedTweets).map((tweetId) => {
             const tweet = myRetweetedTweets[tweetId];
             return <Tweet key={tweetId} tweetInfo={tweet} />;
           })
         ) : (
-          <div>Aun no tienes tweets por ver. Comparte lo que piensas!</div>
+          <div>Aun no tienes retweets por ver.</div>
         )}
       </div>
     );
@@ -58,13 +58,13 @@ const Tweets = ({
   if (navigationStatus === "Saved") {
     return (
       <div className="tweets-container">
-        {mySavedTweets ? (
+        {mySavedTweets && Object.keys(mySavedTweets).length !== 0 ? (
           Object.keys(mySavedTweets).map((tweetId) => {
             const tweet = mySavedTweets[tweetId];
             return <Tweet key={tweetId} tweetInfo={tweet} />;
           })
         ) : (
-          <div>Aun no tienes tweets por ver. Comparte lo que piensas!</div>
+          <div>Aun no tienes tweets guardados.</div>
         )}
       </div>
     );

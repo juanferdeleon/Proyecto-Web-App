@@ -10,6 +10,7 @@ import Register from "../Register/register";
 import Feed from "../Feed/feed";
 import Profile from "../Profile/profile";
 import Following from "../Following/following";
+import SuggestionsPage from "../SuggestionsPage/suggestionspage";
 
 const { store, persistor } = configureStore();
 
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/feed" exact component={Feed} />
           <Route path="/profile" exact component={Profile} />
           <Route path="/follow-info" component={Following} />
+          <Route path="/suggestions" component={SuggestionsPage} />
         </Router>
       </PersistGate>
     </Provider>

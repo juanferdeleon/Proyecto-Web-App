@@ -10,7 +10,7 @@ const Users = ({ followingList, followersList, navigationStatus }) => {
   if (navigationStatus === "Siguiendo") {
     return (
       <div className="users-container">
-        {followingList ? (
+        {followingList && Object.keys(followingList).length !== 0 ? (
           Object.values(followingList).map((user) => (
             <User key={user.user_name} userInfo={user} />
           ))
@@ -24,12 +24,12 @@ const Users = ({ followingList, followersList, navigationStatus }) => {
   if (navigationStatus === "Seguidores") {
     return (
       <div className="users-container">
-        {followersList ? (
+        {followersList && Object.keys(followersList).length !== 0 ? (
           Object.values(followersList).map((user) => (
             <User key={user.user_name} userInfo={user} />
           ))
         ) : (
-          <h3>Aun no sigues a alguien.</h3>
+          <h3>Aun no tienes seguidores.</h3>
         )}
       </div>
     );

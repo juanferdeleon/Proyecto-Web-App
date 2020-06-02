@@ -4,6 +4,7 @@ import { API_BASE_URL } from "../settings";
 import * as selectors from "../reducers";
 import * as authActions from "../actions/auth";
 import * as getTweetsActions from "../actions/gettweets";
+import * as recommendationsActions from "../actions/recommendations";
 import * as types from "../types/auth";
 
 function* login(action) {
@@ -20,6 +21,7 @@ function* login(action) {
       const { token } = yield response.json();
       yield put(authActions.completeLogin(token));
       yield put(getTweetsActions.getFeedTweets());
+      yield put(recommendationsActions.fetchFollowRecommendations());
     } else {
       const { non_field_errors } = yield response.json();
       yield put(authActions.failLogin(non_field_errors[0]));

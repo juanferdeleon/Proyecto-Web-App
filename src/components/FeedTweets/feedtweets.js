@@ -10,7 +10,7 @@ const FeedTweets = ({ tweets }) => {
   return (
     <div className="feed-tweets-main-container">
       <TweetSomething />
-      {tweets ? (
+      {tweets && Object.keys(tweets).length !== 0 ? (
         Object.keys(tweets).map((tweetId) => {
           const tweet = tweets[tweetId];
           return <Tweet key={tweetId} tweetInfo={tweet} />;
